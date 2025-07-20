@@ -1,7 +1,6 @@
 import type { Collection } from "tinacms";
 
 export const BlogCollection: Collection = {
-
   name: "blog",
   label: "Blogs",
   path: "src/content/blog",
@@ -46,4 +45,4 @@ export const BlogCollection: Collection = {
       isBody: true,
     },
   ],
-}
+};

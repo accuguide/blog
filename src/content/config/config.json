@@ -1,8 +1,8 @@
 {
   "seo": {
-    "title": "Astro Blog + Tina",
-    "description": "Welcome to my website!",
-    "siteOwner": "Your name here"
+    "title": "Accuguide Blog",
+    "description": "Accuguide's official blog, where we share insights, updates, and stories about our journey in the world of accessibility.",
+    "siteOwner": "Accuguide"
   },
   "nav": [
     {
@@ -15,23 +15,13 @@
     },
     {
       "title": "About",
-      "link": "/about"
+      "link": "https://accuguide.org/info/about/"
     }
   ],
   "contactLinks": [
     {
-      "title": "Twitter",
-      "link": "https://x.com/tinacms",
-      "icon": "TbBrandTwitter"
-    },
-    {
-      "title": "Docs",
-      "link": "https://tina.io/docs",
-      "icon": "TbBook2"
-    },
-    {
       "title": "GitHub",
-      "link": "https://github.com/tinacms/tinacms",
+      "link": "https://github.com/accuguide/accuguide",
       "icon": "TbBrandGithub"
     }
   ]

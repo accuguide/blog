@@ -6,7 +6,7 @@ import IconLink from "./react/IconLink";
 
 <header>
 	<nav>
-		<h2><a href="/">{config.seo.title}</a></h2>
+		<p><a class="text-base font-bold" href="/">{config.seo.title}</a></p>
 		<div class="internal-links">
 			{
 				config.nav.map((nav) => (
@@ -29,7 +29,6 @@ import IconLink from "./react/IconLink";
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
 	}
 	h2 {
