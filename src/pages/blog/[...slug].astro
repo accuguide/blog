@@ -23,6 +23,17 @@ const { post, getTinaProps } = Astro.props;
 const tinaProps = await getTinaProps();
 ---
 
-<BlogPost {...tinaProps}>
+<BlogPost
+  title={tinaProps.data.blog.title || 'Untitled Post'}
+  description={tinaProps.data.blog.description || ''}
+  pubDate={new Date(tinaProps.data.blog.pubDate ?? Date.now())}
+  tinaInfo={{
+    path: tinaProps.data.blog._sys.path,
+    filename: tinaProps.data.blog._sys.filename,
+    basename: tinaProps.data.blog._sys.basename,
+    relativePath: tinaProps.data.blog._sys.relativePath
+  }}
+  heroImage={tinaProps.data.blog.heroImage || '/blog-placeholder-1.jpg'}
+>
 		<AdminBlogPost {...tinaProps} client:tina/>
 </BlogPost>
