@@ -4,20 +4,6 @@
     "description": "Accuguide's official blog, where we share insights, updates, and stories about our journey in the world of accessibility.",
     "siteOwner": "Accuguide"
   },
-  "nav": [
-    {
-      "title": "Home",
-      "link": "/"
-    },
-    {
-      "title": "Blog",
-      "link": "/blog"
-    },
-    {
-      "title": "About",
-      "link": "https://accuguide.org/info/about/"
-    }
-  ],
   "contactLinks": [
     {
       "title": "GitHub",

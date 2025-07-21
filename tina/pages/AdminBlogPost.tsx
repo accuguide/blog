@@ -20,25 +20,22 @@ export default function AdminBlogPost(props: Props) {
   const blog = data.blog;
 
   return (
-    <article className="my-4 mx-8 w-full">
-      <div
-        data-tina-field={tinaField(blog, "heroImage")}
-        className="flex justify-center "
-      >
+    <article className="my-4 mx-8">
+      <div data-tina-field={tinaField(blog, "heroImage")} className="flex">
         {blog.heroImage && (
           <img
             width={1020}
             height={510}
             src={blog.heroImage}
             alt=""
-            className="w-[50%] rounded-lg"
+            className="w-[80%] rounded-lg"
           />
         )}
       </div>
       <div className="prose">
         <div className="title">
           <div className="date" data-tina-field={tinaField(blog, "pubDate")}>
-            <p className="text-center mt-2">
+            <p className="my-4">
               <FormattedDate date={blog.pubDate} />
             </p>
             {blog.updatedDate && (
@@ -50,7 +47,9 @@ export default function AdminBlogPost(props: Props) {
               </div>
             )}
           </div>
-          <h1 data-tina-field={tinaField(blog, "title")}>{blog.title}</h1>
+          <h1 className="mb-4" data-tina-field={tinaField(blog, "title")}>
+            {blog.title}
+          </h1>
         </div>
         <div data-tina-field={tinaField(blog, "body")}>
           <TinaMarkdown content={blog.body} />

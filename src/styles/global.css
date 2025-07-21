@@ -112,19 +112,22 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-slate-400 outline-ring/50;
   }
   body {
-    @apply bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 text-slate-100 min-h-screen;
+    @apply bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 text-slate-100 min-h-[80svh];
   }
   h1 {
-    @apply scroll-m-20 text-center text-4xl font-bold tracking-tight text-balance;
+    @apply scroll-m-20 text-4xl font-bold tracking-tight text-balance;
+  }
+  h2 {
+    @apply scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0 mt-2;
   }
   p {
-    @apply leading-7 [&:not(:first-child)]:mt-6;
+    @apply text-slate-300 leading-7 [&:not(:first-child)]:mt-6;
   }
   a {
-    @apply text-sm hover:underline hover:opacity-75;
+    @apply text-slate-300 text-sm hover:underline hover:opacity-75;
   }
   .footer-heading {
     @apply mb-1 font-bold;

@@ -19,10 +19,7 @@ const HomePage = (props: Props) => {
 
   return (
     <main>
-      <div
-        data-tina-field={tinaField(page, "body")}
-        className="my-4 mx-8 w-full"
-      >
+      <div data-tina-field={tinaField(page, "body")}>
         <TinaMarkdown content={page.body} />
       </div>
     </main>
