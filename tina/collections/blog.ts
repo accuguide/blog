@@ -7,7 +7,8 @@ export const BlogCollection: Collection = {
   format: "mdx",
   ui: {
     router({ document }) {
-      return `/${document._sys.filename}`;
+      const category = (document as any).category || "uncategorized";
+      return `/posts/${category}/${document._sys.filename}`;
     },
   },
   fields: [
@@ -22,6 +23,25 @@ export const BlogCollection: Collection = {
       name: "description",
       label: "Description",
       type: "string",
+    },
+    {
+      name: "category",
+      label: "Category",
+      type: "string",
+      required: true,
+      options: [
+        "accessibility",
+        "technology",
+        "tutorials",
+        "news",
+        "accuguide",
+      ],
+    },
+    {
+      name: "author",
+      label: "Author",
+      type: "string",
+      required: true,
     },
     {
       name: "pubDate",

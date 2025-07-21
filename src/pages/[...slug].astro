@@ -8,7 +8,7 @@ export async function getStaticPaths() {
 	const posts = await getCollection("blog");
 
 	return posts.map((post) => ({
-		params: { slug: post.id },
+		params: { slug: post.id }, // This will be posts/{category}/{post-name}
 		props: {
 			post,
 			getTinaProps: async () =>
@@ -21,19 +21,23 @@ export async function getStaticPaths() {
 
 const { post, getTinaProps } = Astro.props;
 const tinaProps = await getTinaProps();
+const blog = tinaProps.data.blog as any;
 ---
 
 <BlogPost
-  title={tinaProps.data.blog.title || 'Untitled Post'}
-  description={tinaProps.data.blog.description || ''}
-  pubDate={new Date(tinaProps.data.blog.pubDate ?? Date.now())}
+  title={blog.title || 'Untitled Post'}
+  description={blog.description || ''}
+  category={blog.category || 'uncategorized'}
+  author={blog.author || 'Unknown Author'}
+  pubDate={new Date(blog.pubDate ?? Date.now())}
+  updatedDate={blog.updatedDate ? new Date(blog.updatedDate) : undefined}
   tinaInfo={{
-    path: tinaProps.data.blog._sys.path,
-    filename: tinaProps.data.blog._sys.filename,
-    basename: tinaProps.data.blog._sys.basename,
-    relativePath: tinaProps.data.blog._sys.relativePath
+    path: blog._sys.path,
+    filename: blog._sys.filename,
+    basename: blog._sys.basename,
+    relativePath: blog._sys.relativePath
   }}
-  heroImage={tinaProps.data.blog.heroImage || '/blog-placeholder-1.jpg'}
+  heroImage={blog.heroImage || '/blog-placeholder-1.jpg'}
 >
 		<AdminBlogPost {...tinaProps} client:tina/>
 </BlogPost>

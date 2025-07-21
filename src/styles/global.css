@@ -121,10 +121,10 @@
     @apply scroll-m-20 text-4xl font-bold tracking-tight text-balance;
   }
   h2 {
-    @apply scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0 mt-2;
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0 mt-2;
   }
   p {
-    @apply text-slate-300 leading-7 [&:not(:first-child)]:mt-6;
+    @apply text-slate-300 leading-7 mb-4;
   }
   a {
     @apply text-slate-300 text-sm hover:underline hover:opacity-75;

@@ -6,17 +6,21 @@ const blog = defineCollection({
     const postsResponse = await client.queries.blogConnection();
 
     // Map Tina posts to the correct format for Astro
-    return postsResponse.data.blogConnection.edges
-      ?.filter((post) => !!post)
-      .map((post) => {
-        const node = post?.node;
+    return (
+      postsResponse.data.blogConnection.edges
+        ?.filter((post) => !!post)
+        .map((post) => {
+          const node = post?.node as any;
+          const category = node?.category || "uncategorized";
+          const filename = node?._sys.relativePath.replace(/\.mdx?$/, "");
 
-        return {
-          ...node,
-          id: node?._sys.relativePath.replace(/\.mdx?$/, ""), // Generate clean URLs
-          tinaInfo: node?._sys, // Include Tina system info if needed
-        };
-      });
+          return {
+            ...node,
+            id: `posts/${category}/${filename}`, // New URL structure: /posts/{category}/{post-name}
+            tinaInfo: node?._sys, // Include Tina system info if needed
+          };
+        }) || []
+    );
   },
   schema: z.object({
     tinaInfo: z.object({
@@ -27,6 +31,8 @@ const blog = defineCollection({
     }),
     title: z.string(),
     description: z.string(),
+    category: z.string(),
+    author: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().nullish(),
@@ -38,17 +44,19 @@ const page = defineCollection({
     const postsResponse = await client.queries.pageConnection();
 
     // Map Tina posts to the correct format for Astro
-    return postsResponse.data.pageConnection.edges
-      ?.filter((p) => !!p)
-      .map((p) => {
-        const node = p?.node;
+    return (
+      postsResponse.data.pageConnection.edges
+        ?.filter((p) => !!p)
+        .map((p) => {
+          const node = p?.node;
 
-        return {
-          ...node,
-          id: node?._sys.relativePath.replace(/\.mdx?$/, ""), // Generate clean URLs
-          tinaInfo: node?._sys, // Include Tina system info if needed
-        };
-      });
+          return {
+            ...node,
+            id: node?._sys.relativePath.replace(/\.mdx?$/, "") || "", // Generate clean URLs
+            tinaInfo: node?._sys, // Include Tina system info if needed
+          };
+        }) || []
+    );
   },
   schema: z.object({
     tinaInfo: z.object({

@@ -4,9 +4,15 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+  category?: string;
+  author?: string;
+  updatedDate?: Date;
+  heroImage?: string;
+  tinaInfo?: any;
+};
 
-const { title, description } = Astro.props;
+const { title, description, category, author, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
 <html lang="en">
