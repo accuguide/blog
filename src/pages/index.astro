@@ -1,53 +1,66 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import config from '../content/config/config.json';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../components/FormattedDate.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import config from "../content/config/config.json";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
-
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={config.seo.title} description={config.seo.description} />
-	</head>
-	<body>
-		<Header />
-		<main class="mx-8">
-			<div>
-				<h1 class="mb-2">Accuguide Blog</h1>
-				<p class="mt-0 mb-6">Welcome to Accuguide's blog!</p>
-			</div>
-			<section>
-				<ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-					{
-						posts.map((post) => (
-							<li class="flex flex-col">
-								<a href={`/${post.id}/`} class="flex flex-col h-full">
-									<img width={720} height={360} src={post.data.heroImage} alt="" class="rounded-lg w-full aspect-video object-cover mb-4"/>
-									<div class="mb-2">
-										<span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">
-											{(post.data.category || 'Uncategorized').charAt(0).toUpperCase() + (post.data.category || 'Uncategorized').slice(1)}
-										</span>
-									</div>
-									<h2 class="font-semibold flex-grow mt-0">{post.data.title}</h2>
-									<p class="text-sm text-gray-600 mt-1">By {post.data.author || 'Unknown Author'}</p>
-									<p class="mt-0">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={config.seo.title} description={config.seo.description} />
+  </head>
+  <body>
+    <Header />
+    <main class="mx-8">
+      <div>
+        <h1 class="mb-2">Accuguide Blog</h1>
+        <p class="mt-0 mb-6">Welcome to Accuguide's blog!</p>
+      </div>
+      <section>
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            posts.map((post) => (
+              <li class="flex flex-col">
+                <a href={`/${post.id}/`} class="flex flex-col h-full">
+                  <img
+                    width={720}
+                    height={360}
+                    src={post.data.heroImage}
+                    alt=""
+                    class="rounded-lg w-full aspect-video object-cover mb-4"
+                  />
+
+                  <h2 class="font-semibold flex-grow mt-0">
+                    {post.data.title}
+                  </h2>
+                  <p class="mt-0 mb-0">
+                    <FormattedDate date={post.data.pubDate} />
+                  </p>
+                  <div class="mb-1 mt-1">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">
+                      {(post.data.category || "Uncategorized")
+                        .charAt(0)
+                        .toUpperCase() +
+                        (post.data.category || "Uncategorized").slice(1)}
+                    </span>
+                  </div>
+                  <p class="text-sm text-gray-300 mt-0">
+                    By {post.data.author || "Unknown Author"}
+                  </p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>

@@ -1,10 +1,10 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
-type Props = CollectionEntry<'blog'>['data'] & {
+type Props = CollectionEntry<"blog">["data"] & {
   category?: string;
   author?: string;
   updatedDate?: Date;
@@ -12,19 +12,27 @@ type Props = CollectionEntry<'blog'>['data'] & {
   tinaInfo?: any;
 };
 
-const { title, description, category, author, pubDate, updatedDate, heroImage } = Astro.props;
+const {
+  title,
+  description,
+  category,
+  author,
+  pubDate,
+  updatedDate,
+  heroImage,
+} = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-	<body>
-		<Header />
-		<main>
-			<slot />
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>

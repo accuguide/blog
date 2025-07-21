@@ -121,7 +121,7 @@
     @apply scroll-m-20 text-4xl font-bold tracking-tight text-balance;
   }
   h2 {
-    @apply scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0 mt-2;
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight mb-1 mt-2;
   }
   p {
     @apply text-slate-300 leading-7 mb-4;
@@ -131,5 +131,9 @@
   }
   .footer-heading {
     @apply mb-1 font-bold;
+  }
+
+  ul {
+    @apply text-slate-300 list-disc ml-4 mb-4;
   }
 }
