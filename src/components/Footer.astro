@@ -4,19 +4,19 @@ const today = new Date();
 ---
 
 <div class="my-8"></div>
-<footer class="border-t-2 px-8 py-4 lg:px-24">
+<footer class="border-t-2 px-4 md:px-8 py-4">
   <div class="flex justify-between">
     <div class="flex">
       <img
         src="/images/logo.png"
         alt="Disability pride logo"
-        class="w-[54px] h-[54px] md:w-[64px] md:h-[64px] rounded-lg mr-2 md:mr-4 mt-2"
+        class="w-[54px] h-[54px] md:w-[64px] md:h-[64px] rounded-lg mr-2 md:mr-4 mt-3 md:mt-2"
       />
       <a href="/">
         <div>
-          <p class="footer-heading text-base md:text-lg">Accuguide</p>
+          <p class="footer-heading text-base md:text-lg mb-[-2px]">Accuguide</p>
           <p class="font-semibold text-sm md:text-base my-0">Discover</p>
-          <p class="font-semibold text-sm md:text-base mb-0 mt-[-4px]">
+          <p class="font-semibold text-sm md:text-base mb-0 mt-[-6px]">
             Accessibility
           </p>
         </div>
@@ -65,9 +65,9 @@ const today = new Date();
     </div>
   </div>
 
-  <p class="text-xs text-left sm:text-center mb-0 mt-2">
-    &copy; {today.getFullYear()}
-    {config.seo.siteOwner}. All rights reserved.
+  <p class="text-xs text-left sm:text-center mb-0 mt-[-44px] sm:mt-2">
+    Copyright {today.getFullYear()}
+    {config.seo.siteOwner}
     <p class="text-xs text-left sm:text-center mb-0 mt-[-8px]">
       This site is powered by{" "}
       <a href="https://netlify.com" class="text-xs"> Netlify </a>

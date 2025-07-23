@@ -37,7 +37,7 @@ const blog = tinaProps.data.blog as any;
     basename: blog._sys.basename,
     relativePath: blog._sys.relativePath,
   }}
-  heroImage={blog.heroImage || "/blog-placeholder-1.jpg"}
+  heroImage={blog.heroImage || "/blog-placeholder.jpg"}
 >
   <AdminBlogPost {...tinaProps} client:tina />
 </BlogPost>

@@ -18,13 +18,19 @@ const posts = (await getCollection("blog")).sort(
   </head>
   <body>
     <Header />
-    <main class="mx-8">
+    <main class="mx-4 md:mx-8 min-h-[75svh]">
       <div>
         <h1 class="mb-2">Accuguide Blog</h1>
-        <p class="mt-0 mb-6">Welcome to Accuguide's blog!</p>
+        <p class="mt-0 mb-6 max-w-full md:max-w-[80%]">
+          Welcome to Accuguide's official blog! We're so glad you're here! This
+          blog is where we'll share updates, accessibility tips, stories from
+          real people, and much more!
+        </p>
       </div>
       <section>
-        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ul
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ml-[-4px]"
+        >
           {
             posts.map((post) => (
               <li class="flex flex-col">

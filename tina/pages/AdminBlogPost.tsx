@@ -20,7 +20,7 @@ export default function AdminBlogPost(props: Props) {
   const blog = data.blog;
 
   return (
-    <article className="my-4 mx-8 md:w-[80%]">
+    <article className="my-4 mx-4 md:mx-32">
       <div data-tina-field={tinaField(blog, "heroImage")} className="flex">
         {blog.heroImage && (
           <img
@@ -36,7 +36,7 @@ export default function AdminBlogPost(props: Props) {
         <div className="title">
           <div className="date" data-tina-field={tinaField(blog, "pubDate")}>
             <p className="mt-4 mb-2">
-              <FormattedDate date={blog.pubDate} />
+              <FormattedDate date={blog.pubDate ?? ""} />
             </p>
             {blog.updatedDate && (
               <div
