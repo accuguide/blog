@@ -1,0 +1,76 @@
+---
+// ./src/pages/post/[slug].astro
+import type { SanityDocument } from "@sanity/client";
+import PortableText from "../../components/PortableText.astro";
+import Layout from "../../layouts/Layout.astro";
+import { loadQuery } from "../../sanity/lib/load-query";
+import { urlForImage } from "../../sanity/lib/url-for-image";
+
+export async function getStaticPaths() {
+	const { data: posts } = await loadQuery<SanityDocument[]>({
+		query: `*[_type == "post"]`,
+	});
+
+	return posts.map(({ slug }) => {
+		return {
+			params: {
+				slug: slug.current,
+			},
+		};
+	});
+}
+
+const { params } = Astro;
+
+const { data: post } = await loadQuery<{
+	title: string;
+	mainImage: { alt?: string };
+	author: {
+		name: string;
+		image: { alt?: string };
+	};
+	publishedAt: string;
+	body: any[];
+}>({
+	query: `*[_type == "post" && slug.current == $slug][0]{
+		title,
+		mainImage,
+		author->{
+			name,
+			image
+		},
+		publishedAt,
+		body
+	}`,
+	params,
+});
+---
+
+<Layout>
+  <h1>{post.title}</h1>
+	<img
+		src={urlForImage(post.mainImage)?.url()}
+		alt={post.mainImage.alt || post.title}
+		class="rounded-lg mb-8 max-w-4xl"
+	/>
+	<div class="flex items-center gap-4 mb-8">
+		<img
+			src={urlForImage(post.author.image)?.url()}
+			alt={post.author.image.alt || post.author.name}
+			class="rounded-lg w-11 h-11"
+		/>
+		<div class="flex flex-col gap-2">
+			<p class="mb-0 font-semibold">{post.author.name}</p>
+			<p class="mb-0 secondary-text text-sm">
+				{new Date(post.publishedAt).toLocaleDateString('en-US', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric'
+				})}
+			</p>
+		</div>
+	</div>
+	<div class="max-w-4xl mb-12">
+		<PortableText portableText={post.body} />
+</div>
+</Layout>
