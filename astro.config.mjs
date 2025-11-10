@@ -2,6 +2,7 @@
 
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
@@ -11,6 +12,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  site: "https://beta.accuguide.org",
 
   integrations: [
     sanity({
@@ -24,6 +26,7 @@ export default defineConfig({
       },
     }),
     react(),
+    sitemap(),
   ],
 
   adapter: netlify(),

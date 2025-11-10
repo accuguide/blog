@@ -1,6 +1,7 @@
 ---
 // ./src/pages/post/[slug].astro
 import type { SanityDocument } from "@sanity/client";
+import type { PortableTextBlock } from "sanity";
 import PortableText from "../../components/PortableText.astro";
 import Layout from "../../layouts/Layout.astro";
 import { loadQuery } from "../../sanity/lib/load-query";
@@ -30,7 +31,7 @@ const { data: post } = await loadQuery<{
     image: { alt?: string };
   };
   publishedAt: string;
-  body: any[];
+  body: PortableTextBlock[];
 }>({
   query: `*[_type == "post" && slug.current == $slug][0]{
 		title,
