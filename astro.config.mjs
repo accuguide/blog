@@ -13,7 +13,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   site: "https://beta.accuguide.org",
-
+  trailingSlash: "never",
   integrations: [
     sanity({
       projectId: "z2kaw7st",
